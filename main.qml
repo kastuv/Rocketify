@@ -21,13 +21,22 @@ Window {
 
         Keys.onPressed:
         {
-            if(event.key === Qt.Key_Left)
+            let key = event.key;
+            if(key === Qt.Key_Left)
             {
                 rectangle.x -= 10;
             }
-            else if(event.key === Qt.Key_Right)
+            else if(key === Qt.Key_Right)
             {
                 rectangle.x += 10;
+            }
+            else if(key === Qt.Key_Up)
+            {
+                rectangle.y -= 10;
+            }
+            else if(key === Qt.Key_Down)
+            {
+                rectangle.y += 10;
             }
         }
     }
