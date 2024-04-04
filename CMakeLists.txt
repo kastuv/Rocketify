@@ -14,7 +14,9 @@ qt_add_executable(appRocketify
 qt_add_qml_module(appRocketify
     URI Rocketify
     VERSION 1.0
-    QML_FILES main.qml 
+    QML_FILES main.qml
+    QML_FILES
+    SOURCES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
