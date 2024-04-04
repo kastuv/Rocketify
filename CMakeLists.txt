@@ -17,6 +17,8 @@ qt_add_qml_module(appRocketify
     QML_FILES main.qml
     QML_FILES
     SOURCES
+    SOURCES linkedlist.h linkedlist.cpp
+    SOURCES linkedlistwrapper.h linkedlistwrapper.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

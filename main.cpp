@@ -1,11 +1,16 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include "LinkedListWrapper.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+
+    LinkedListWrapper linkedListWrapper;
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("linkedListWrapper", &linkedListWrapper);
 
     const QUrl url(u"qrc:/Rocketify/main.qml"_qs);
     QObject::connect(
