@@ -1,7 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "LinkedListWrapper.h"
+#include "linkedListWrapper.h"
+
+// QObject game;
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +12,7 @@ int main(int argc, char *argv[])
 
     LinkedListWrapper linkedListWrapper;
     QQmlApplicationEngine engine;
+    qmlRegisterType<LinkedListWrapper>("com.linked", 1, 0, "LinkedListWrapper");
     engine.rootContext()->setContextProperty("linkedListWrapper", &linkedListWrapper);
 
     const QUrl url(u"qrc:/Rocketify/main.qml"_qs);
