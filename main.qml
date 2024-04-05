@@ -33,9 +33,11 @@ Window {
         Keys.onPressed: {
             let key = event.key;
             if (key === Qt.Key_Left) {
-                player.x -= 15;
+                if (player.x - 15 >= 0)
+                    player.x -= 15;
             } else if (key === Qt.Key_Right) {
-                player.x += 15;
+                if (player.x + player.width + 15 <= game.width)
+                    player.x += 15;
             } else if (key === Qt.Key_Space) {
                 fireBullet();
             }
