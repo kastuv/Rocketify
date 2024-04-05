@@ -4,6 +4,8 @@ project(Rocketify VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
@@ -19,6 +21,7 @@ qt_add_qml_module(appRocketify
     SOURCES
     SOURCES linkedlist.h linkedlist.cpp
     SOURCES linkedlistwrapper.h linkedlistwrapper.cpp
+    RESOURCES resources.qrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

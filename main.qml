@@ -9,25 +9,54 @@ Window {
     visible: true
     title: qsTr("Rocketify")
 
+
+
+    AnimatedImage
+    {
+        id: bg
+        anchors.fill: parent
+        source: "qrc:/bg"
+    }
+
+    Rectangle{
+        id: top
+        anchors.fill: parent
+        color: "black"
+        opacity: 0.4
+
+    }
+
     LinkedListWrapper {
         id: linkedListWrapper
     }
 
     Text {
         id: scoreText
-        text: "Score: " + linkedListWrapper.score
-        anchors.bottom: parent.bottom
+        text: "Game Score: " + linkedListWrapper.score
+        anchors.top: parent.top
+        anchors.topMargin: 40
         anchors.horizontalCenter: parent.horizontalCenter
+        FontLoader
+        {
+            id: font
+            source: "qrc:/font"
+        }
+
+        font.family : font.name
+        font.pixelSize: 30
+        color: "white"
+        anchors.right: parent.right
+        anchors.rightMargin: 30
     }
 
     Rectangle {
         id: player
-        height: 50
-        width: 50
-        color: "red"
+        height: 80
+        width: 80
+        color: "transparent"
 
         x: (parent.width - width) / 2
-        y: parent.height - height
+        y: parent.height - height - 10
         focus: true
 
         Keys.onPressed: {
@@ -41,6 +70,13 @@ Window {
             } else if (key === Qt.Key_Space) {
                 fireBullet();
             }
+        }
+
+        Image {
+            id: rocketPlayer
+            source: "qrc:/player"
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
         }
     }
 
@@ -100,7 +136,12 @@ Window {
     property var enemies: []
 
     function fireBullet() {
-        var bulletComponent = 'import QtQuick 2.0\nRectangle { id: bulletrect; height: 10; width: 5; color: "black" }';
+        var bulletComponent = 'import QtQuick 2.0\nRectangle { id: bulletrect; height: 40; width: 8; color: "transparent"; Image {
+            id: bullet
+            source: "qrc:/bullet"
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+        } }';
         var bullet = Qt.createQmlObject(bulletComponent, game);
         bullet.x = player.x + (player.width - bullet.width) / 2;
         bullet.y = player.y - 20;
@@ -124,7 +165,12 @@ Window {
         var enemyDensity = linkedListWrapper.score < 50 ? 0.3 : (linkedListWrapper.score < 100 ? 0.4 : 0.6);
 
         if (Math.random() < enemyDensity) {
-            var enemyComponent = 'import QtQuick 2.0\nRectangle { id: enemyrect; height: 50; width: 50; color: "blue" }';
+            var enemyComponent = 'import QtQuick 2.0\nRectangle { id: enemyrect; height: 70; width: 70; color: "transparent"; Image {
+            id: rocketPlayer
+            source: "qrc:/enemy"
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+        } }';
             var enemy = Qt.createQmlObject(enemyComponent, game);
             enemy.x = Math.random() * (game.width - enemy.width);
             enemy.y = -enemy.height;

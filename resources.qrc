@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="player">playerRocket</file>
+        <file alias="enemy">enemyRocket</file>
+        <file alias="bullet">bullet</file>
+        <file>font</file>
+        <file alias="bg">bg</file>
+    </qresource>
+</RCC>
