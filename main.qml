@@ -116,18 +116,23 @@ Window {
 
         Text {
             id: gameOverText
-            text: "Game Over! Score: " + linkedListWrapper.score
+            text: "<html><h1>Game Over!</h1>\nScore: </html>" + linkedListWrapper.score
+            horizontalAlignment: Text.AlignHCenter
+            font.family : font.name
+            font.pixelSize: 25
             color: "white"
-            font.pixelSize: 50
             anchors.centerIn: parent
         }
 
         Button {
             id: restartButton
             text: "Restart"
+            width: gameOverText.width
             onClicked: restartGame()
             anchors.top: gameOverText.bottom
             anchors.horizontalCenter: parent.horizontalCenter
+
+            hoverEnabled: true
         }
     }
 
@@ -162,7 +167,7 @@ Window {
     }
 
     function createEnemy() {
-        var enemyDensity = linkedListWrapper.score < 50 ? 0.3 : (linkedListWrapper.score < 100 ? 0.4 : 0.6);
+        var enemyDensity = linkedListWrapper.score < 50 ? 0.3 : (linkedListWrapper.score < 100 ? 0.4 : (linkedListWrapper.score < 150 ? 0.6 : 0.8));
 
         if (Math.random() < enemyDensity) {
             var enemyComponent = 'import QtQuick 2.0\nRectangle { id: enemyrect; height: 70; width: 70; color: "transparent"; Image {
@@ -179,7 +184,7 @@ Window {
     }
 
     function moveEnemies() {
-        var fallingSpeed = linkedListWrapper.score < 50 ? 5 : (linkedListWrapper.score < 100 ? 10 : 15);
+        var fallingSpeed = linkedListWrapper.score < 50 ? 5 : (linkedListWrapper.score < 100 ? 10 : (linkedListWrapper.score < 150 ? 15 : 20));
         for (var i = 0; i < enemies.length; ++i) {
             var enemy = enemies[i];
             enemy.y += fallingSpeed;
